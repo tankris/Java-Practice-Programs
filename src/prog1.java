@@ -1,19 +1,18 @@
 import java.util.Scanner;
 
 public class prog1 {
-
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in); //Creating scanner to read input
 
-        //Accepting 1st element
+        //Accepting 2 elements
         System.out.print("Enter the first element: ");
         int num1 = scanner.nextInt();
 
-        //Accepting 2nd element
         System.out.print("Enter the second element: ");
         int num2 = scanner.nextInt();
 
+        //Compare if the numbers are the same, else swap
         if(num1 != num2){
             int temp = num2;
             num2 = num1;
