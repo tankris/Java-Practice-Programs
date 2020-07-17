@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Swap {
+public class prog1 {
 
     public static void main(String[] args) {
 
