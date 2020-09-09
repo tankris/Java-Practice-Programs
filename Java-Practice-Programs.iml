@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/codeWars" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/hackerRank" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/dataStructures" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
