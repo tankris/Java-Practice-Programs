@@ -4,11 +4,13 @@ Practice Programs written in Java
 The following are the programs with source code included:
 
 /src
-- Program 1 : Accept 2 numbers and swap them
-- Program 2 : Accept an array of 10 elements and find the sum of the elements
+- prog1 : Accept 2 numbers and swap them
+- prog2 : Accept an array of 10 elements and find the sum of the elements
 
 /codeWars
-- Program 1 : Accept an array of 10 elements and find the smallest element
+- cwprog1 : Accept an array of 10 elements and find the smallest element
+- cwprog14 : Accept a comment symbol and remove the comment lines from a given
+  string
 
 /hackerRank
-- Program 1 : Print 2 statements using S.o.pln()
+- hrprog1 : Print 2 statements using S.o.pln()
