@@ -16,5 +16,8 @@ The following are the programs with source code included:
 - hrprog1 : Print 2 statements using S.o.pln()
 
 /interviewPrep
--rightTriangle : For an input height, draw the boundry of a right-angled
+- rightTriangle : For an input height, draw the boundry of a right-angled
 triangle
+
+/leetCode
+- twoSum.java : Return index of the elements in an array whose sum equals a target value
