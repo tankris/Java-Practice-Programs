@@ -20,4 +20,5 @@ The following are the programs with source code included:
 triangle
 
 /leetCode
-- twoSum.java : Return index of the elements in an array whose sum equals a target value
+- twoSum : Return index of the elements in an array whose sum equals a target value
+- maxProfit : Find the best time to buy and sell a stock
