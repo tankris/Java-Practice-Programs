@@ -12,6 +12,10 @@ The following are the programs with source code included:
 - cwprog14 : Accept a comment symbol and remove the comment lines from a given
   string
 
+/dataStructures
+- array : Implementation of an Array datastructure
+- singlyLinkedList : Implementation of a Singly Linked List data structure
+
 /hackerRank
 - hrprog1 : Print 2 statements using S.o.pln()
 
@@ -20,5 +24,5 @@ The following are the programs with source code included:
 triangle
 
 /leetCode
-- twoSum : Return index of the elements in an array whose sum equals a target value
 - maxProfit : Find the best time to buy and sell a stock
+- twoSum : Return index of the elements in an array whose sum equals a target value
