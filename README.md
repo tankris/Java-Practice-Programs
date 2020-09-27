@@ -3,17 +3,13 @@ Practice Programs written in Java
 
 The following are the programs with source code included:
 
-/src
-- prog1 : Accept 2 numbers and swap them
-- prog2 : Accept an array of 10 elements and find the sum of the elements
-
 /codeWars
 - cwprog1 : Accept an array of 10 elements and find the smallest element
 - cwprog14 : Accept a comment symbol and remove the comment lines from a given
   string
 
 /dataStructures
-- array : Implementation of an Array datastructure
+- array : Implementation of an Array data structure (static and dynamic)
 - singlyLinkedList : Implementation of a Singly Linked List data structure
 
 /hackerRank
@@ -26,3 +22,7 @@ triangle
 /leetCode
 - maxProfit : Find the best time to buy and sell a stock
 - twoSum : Return index of the elements in an array whose sum equals a target value
+
+/src
+- prog1 : Accept 2 numbers and swap them
+- prog2 : Accept an array of 10 elements and find the sum of the elements
