@@ -9,7 +9,8 @@ The following are the programs with source code included:
   string
 
 /dataStructures
-- array : Implementation of an Array data structure (static and dynamic)
+- array : Implementation of a Static Array
+- arrayList : Implementation of a Dynamic Array
 - singlyLinkedList : Implementation of a Singly Linked List data structure
 
 /hackerRank

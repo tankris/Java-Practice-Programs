@@ -1,33 +1,25 @@
+import java.util.Arrays;
 import java.util.ArrayList;
 
 class array {
+	//Default value of each element in an array is equal to the
+	//default value of its type
+	static int[] arr = new int[5];
+	
+	public static array() {
+		Arrays.fill(arr, Integer.MIN_VALUE);
+	}
+	
 	//Finds the size of the Static Array
-	public static void size(int[] arr) {
+	public static void size() {
 		//In java, there is no way to distinguish capacity from the size
 		//of the array
 		System.out.println("Size of the array: " + arr.length);
 	}
 
-	//Finds the size of the Dynamic Array
-	public static void size(ArrayList<Integer> arrayList) {
-		//Much like an array, there isn't an easy solution to find the
-		//capacity of the Array List
-		System.out.println("Current size of the array: " + arrayList.size());
-	}
-
-	//Find if the Array List is empty or not
-	public static void is_empty(ArrayList<Integer> arrayList) {
-		if(arrayList.size() == 0) {
-			System.out.println("The Array List is empty");
-		}
-
-		else {
-			System.out.println("The Array List isn't empty");
-		}
-	}
 
 	//Prints the element of the Array List at a given index
-	public static void at(int index, ArrayList<Integer> arrayList) {
+	public static void at(int index) {
 		try {
 			//Tries printing the element at a given index
 			System.out.println("Element at position " + index + " is " + arrayList.get(index));
@@ -42,8 +34,14 @@ class array {
 
 	//Pushes passed item to the end of the array
 	public static void push(int item, int[] arr, ArrayList<Integer> arrayList) {
-		//1st insertion for array
-		arr[0] = item;
+		//Insert into the array
+		int i = 0;
+
+		while(arr[i] != Integer.MIN_VALUE) {
+			i++;
+		}
+
+		arr[i] = item;
 
 		//Don't need to know the index of the last element when inerting
 		//into a Dynamic array
@@ -76,43 +74,101 @@ class array {
 		//Display contents of the Array and Array List
 		displayArray(arr, arrayList);
 	}
+	
+	//Prepend array with item
+	public static void prepend(int item, int[] arr, ArrayList<Integer> arrayList) {
+		//Calling insert at index 0
+		insert(0, item, arr, arrayList);
+	}
+
+	//Remove the last element and display it
+	public static void pop(int[] arr, ArrayList<Integer> arrayList) {
+		//Removing the last element from the Array
+		int i = 0;
+
+		while(arr[i] != Integer.MIN_VALUE && i < (arr.length - 1)) {
+			i++;
+		}
+
+		System.out.println("Popped value from the Array: " + arr[i]);
+		arr[i] = Integer.MIN_VALUE;
+
+		//Removing the last element from the Array List
+		System.out.println("Popped value from Array List: " + arrayList.get(arrayList.size()-1));
+
+		arrayList.remove(arrayList.size() - 1);
+	}
+
+	//Delete item at index, shifting all trailing elements left
+	public static void delete(int index, int[] arr, ArrayList<Integer> arrayList) {
+		try {
+
+			//Removing element at index by instead shifting all
+			//elements from index's right to the left
+			for(int i = index; i < arr.length-1; i++) {
+				arr[i] = arr[i + 1];
+			}
+		}
+
+		catch(IndexOutOfBoundsException ex) {
+			System.out.println("The index given is outside the range of the array");
+		}
+
+		display();
+	}
+
+	public static void remove(int item, int[] arr, ArrayList<Integer> arrayList) {
+		//Finds the 1st occurance in the Array and prints the index
+		for(int i = 0; i < arr.length; i++) {
+			if(arr[i] == item) {
+				delete(i, arr, arrayList);
+			}
+		}
+	}
+
+	//Looks for a value and returns first index at that value
+	public static void find(int item, int[] arr, ArrayList<Integer> arrayList){
+		boolean flag = false;
+
+		//Finds the 1st occurance in the Array and prints the index
+		for(int i = 0; i < arr.length; i++) {
+			if(arr[i] == item) {
+				flag = true;
+				System.out.println(item + " is at " + i);
+				break;
+			}
+		}
+
+		if(flag == false) {
+			System.out.println(item + " wasn't found");
+		}
+
+	}
 
 	//Displays the elements of the Array and Array List
-	public static void displayArray(int[] arr, ArrayList<Integer> arrayList) {
+	public static void display(int[] arr, ArrayList<Integer> arrayList) {
 		//Displaying the contents of the Static array
 		System.out.println("Contents of the Array: ");
 		for(int i = 0; i < arr.length; i++) {
 			System.out.println(arr[i]);
 		}
-
-		//Displaying the contents of the Dynamic array
-		System.out.println("Contents of the Array List: ");
-		arrayList.forEach((n) -> System.out.println(n));
 	}
 
 	public static void main(String[] args) {
-		//Default value of each element in an array is equal to the
-		//default value of its type
-		int[] arr = new int[5];
 		
-		size(arr);
-
-		ArrayList<Integer> arrayList = new ArrayList<>();
-
-		for(int i = 0; i < 5; i++) {
-			arrayList.add(i);
-		}
 		
 		//Example of polymorphism as there are two functions with the
 		//same name but with different input parameters
-		size(arrayList);
+		//size(arrayList);
 
-		is_empty(arrayList);
+		//is_empty(arrayList);
 		
-		at(10, arrayList);
+		//at(10, arrayList);
 
-		push(2, arr, arrayList);	
+		//push(2, arr, arrayList);	
 
-		insert(0, 3, arr, arrayList);
+		//insert(0, 3, arr, arrayList);
+
+		find(0, arr, arrayList);
 	}
 }
