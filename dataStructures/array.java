@@ -1,59 +1,68 @@
 import java.util.Arrays;
-import java.util.ArrayList;
 
 class array {
 	//Default value of each element in an array is equal to the
 	//default value of its type
-	static int[] arr = new int[5];
+	//In this case, its 0
+	int[] arr = new int[5];
 	
-	public static array() {
+	//Contructor that fills the array with a value
+	public array() {
 		Arrays.fill(arr, Integer.MIN_VALUE);
 	}
 	
-	//Finds the size of the Static Array
-	public static void size() {
+	//Finds the size of the array
+	public void size() {
 		//In java, there is no way to distinguish capacity from the size
 		//of the array
+		//Hence we display just the length
 		System.out.println("Size of the array: " + arr.length);
 	}
 
-
-	//Prints the element of the Array List at a given index
-	public static void at(int index) {
+	//Prints the element of the Array at a given index
+	public void at(int index) {
 		try {
 			//Tries printing the element at a given index
-			System.out.println("Element at position " + index + " is " + arrayList.get(index));
+			System.out.println("Element at position " + index + " is " + arr[index]);
 		}
 
 		catch(IndexOutOfBoundsException ex) {
 			//Catches an exception if the index is outside the range
 			//of the Array List
-			System.out.println("Index not within the Array List's range");
+			System.out.println("Index not within the Array's range");
 		}
 	}
 
 	//Pushes passed item to the end of the array
-	public static void push(int item, int[] arr, ArrayList<Integer> arrayList) {
-		//Insert into the array
-		int i = 0;
+	public void push(int item) {
+		//Inserting into the array
+		try {
+			int i = arr.length - 1;
 
-		while(arr[i] != Integer.MIN_VALUE) {
-			i++;
+			//Check if the index is empty
+			while(arr[i] == Integer.MIN_VALUE && i >= 0) {
+				i--;
+			}
+
+			arr[i + 1] = item;
+			
+			//Display contents of the new array
+			display();
 		}
 
-		arr[i] = item;
-
-		//Don't need to know the index of the last element when inerting
-		//into a Dynamic array
-		arrayList.add(item);
-
-		displayArray(arr, arrayList);
+		catch(IndexOutOfBoundsException ex) {
+			System.out.println("Array is full. Cannot push new value.");
+		}
 	}
 
 	//Inserts item at index, shifts that index's value and trailing elements
 	//to the right
-	public static void insert(int index, int item, int[] arr, ArrayList<Integer> arrayList) {
+	public void insert(int index, int item) {
 		try {
+			if(arr[arr.length - 1] != Integer.MIN_VALUE) {
+				throw new IndexOutOfBoundsException();
+			}
+
 			//Moving all values within array 1 place to the right
 			for(int i = arr.length - 1; i > index; i--) {
 				arr[i] = arr[i-1];
@@ -67,22 +76,18 @@ class array {
 			System.out.println("The index is outside the range of the array");
 		}
 
-		//Moves all the elements from index to the last element to the
-		//right and inserts item at index
-		arrayList.add(index, item);
-
-		//Display contents of the Array and Array List
-		displayArray(arr, arrayList);
+		//Display contents of the new Array
+		display();
 	}
 	
 	//Prepend array with item
-	public static void prepend(int item, int[] arr, ArrayList<Integer> arrayList) {
+	public void prepend(int item) {
 		//Calling insert at index 0
-		insert(0, item, arr, arrayList);
+		insert(0, item);
 	}
 
 	//Remove the last element and display it
-	public static void pop(int[] arr, ArrayList<Integer> arrayList) {
+	public void pop(int[] arr) {
 		//Removing the last element from the Array
 		int i = 0;
 
@@ -92,15 +97,10 @@ class array {
 
 		System.out.println("Popped value from the Array: " + arr[i]);
 		arr[i] = Integer.MIN_VALUE;
-
-		//Removing the last element from the Array List
-		System.out.println("Popped value from Array List: " + arrayList.get(arrayList.size()-1));
-
-		arrayList.remove(arrayList.size() - 1);
 	}
 
 	//Delete item at index, shifting all trailing elements left
-	public static void delete(int index, int[] arr, ArrayList<Integer> arrayList) {
+	public void delete(int index) {
 		try {
 
 			//Removing element at index by instead shifting all
@@ -117,17 +117,17 @@ class array {
 		display();
 	}
 
-	public static void remove(int item, int[] arr, ArrayList<Integer> arrayList) {
+	public void remove(int item) {
 		//Finds the 1st occurance in the Array and prints the index
 		for(int i = 0; i < arr.length; i++) {
 			if(arr[i] == item) {
-				delete(i, arr, arrayList);
+				delete(i);
 			}
 		}
 	}
 
 	//Looks for a value and returns first index at that value
-	public static void find(int item, int[] arr, ArrayList<Integer> arrayList){
+	public void find(int item){
 		boolean flag = false;
 
 		//Finds the 1st occurance in the Array and prints the index
@@ -145,10 +145,10 @@ class array {
 
 	}
 
-	//Displays the elements of the Array and Array List
-	public static void display(int[] arr, ArrayList<Integer> arrayList) {
-		//Displaying the contents of the Static array
+	//Displays the elements of the Array
+	public void display() {
 		System.out.println("Contents of the Array: ");
+
 		for(int i = 0; i < arr.length; i++) {
 			System.out.println(arr[i]);
 		}
@@ -168,7 +168,9 @@ class array {
 		//push(2, arr, arrayList);	
 
 		//insert(0, 3, arr, arrayList);
+		
+		array a = new array();
 
-		find(0, arr, arrayList);
+		a.display();
 	}
 }
