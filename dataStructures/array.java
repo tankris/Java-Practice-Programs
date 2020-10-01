@@ -88,26 +88,40 @@ class array {
 
 	//Remove the last element and display it
 	public void pop(int[] arr) {
-		//Removing the last element from the Array
-		int i = 0;
+		try {
+			int i = 0;
+		
+			//Finding the last element
+			while(arr[i] != Integer.MIN_VALUE && i < arr.length) {
+				i++;
+			}
 
-		while(arr[i] != Integer.MIN_VALUE && i < (arr.length - 1)) {
-			i++;
+			System.out.println("Popped value from the Array: " + arr[i]);
+			arr[i - 1] = Integer.MIN_VALUE;
 		}
 
-		System.out.println("Popped value from the Array: " + arr[i]);
-		arr[i] = Integer.MIN_VALUE;
+		catch(IndexOutOfBoundsException ex) {
+			System.out.println("Array is empty");	
+		}
 	}
 
 	//Delete item at index, shifting all trailing elements left
 	public void delete(int index) {
 		try {
+			int i = index;
 
-			//Removing element at index by instead shifting all
+			if(i < 0 || i >= arr.length)
+				throws new IndexOutOfBoundsException();
+
+			//Removing element at index by shifting all
 			//elements from index's right to the left
-			for(int i = index; i < arr.length-1; i++) {
+			//only if its non-empty
+			while(i < arr.length - 1 && arr[i + 1] != Integer.MIN_VALUE) {
 				arr[i] = arr[i + 1];
+				i++;
 			}
+
+			arr[i] = Integer.MIN_VALUE;
 		}
 
 		catch(IndexOutOfBoundsException ex) {
