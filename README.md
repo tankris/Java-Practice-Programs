@@ -9,7 +9,7 @@ The following are the programs with source code included:
   string
 
 /dataStructures
-- array : Implementation of a Static Array
+- array : Implementation of a Static Array (https://github.com/jwasham/coding-interview-university#arrays)
 - arrayList : Implementation of a Dynamic Array
 - singlyLinkedList : Implementation of a Singly Linked List data structure
 

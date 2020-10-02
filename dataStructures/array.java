@@ -6,24 +6,56 @@ class array {
 	//In this case, its 0
 	int[] arr = new int[5];
 	
-	//Contructor that fills the array with a value
+	//Constructor that fills the array with Integer.MIN_VALUE to make
+	//finding the size easier
 	public array() {
 		Arrays.fill(arr, Integer.MIN_VALUE);
 	}
 	
-	//Finds the size of the array
-	public void size() {
-		//In java, there is no way to distinguish capacity from the size
-		//of the array
-		//Hence we display just the length
-		System.out.println("Size of the array: " + arr.length);
+	//Returns the capacity of the array
+	public int capacity() {
+		return arr.length;
+	}
+
+	//Returns the size of the array
+	public int size() {
+		int i;
+
+		for(i = 0; i < arr.length;) {
+			//Integer.MIN_VALUE is equivalent to empty in our array
+			if(arr[i] == Integer.MIN_VALUE) {
+				break;
+			}
+
+			else {
+				i++;
+			}
+		}
+
+		return i;
+	}
+
+	//Checks if the array is empty
+	public void is_empty() {
+		if(size() == 0) {
+			System.out.println("Array is empty");
+		}
+
+		else {
+			System.out.println("Array isn't empty");
+		}
 	}
 
 	//Prints the element of the Array at a given index
 	public void at(int index) {
 		try {
-			//Tries printing the element at a given index
+			if(arr[index] != Integer.MIN_VALUE) {
 			System.out.println("Element at position " + index + " is " + arr[index]);
+			}
+
+			else {
+				System.out.println("Element at position " + index + " is empty");
+			}
 		}
 
 		catch(IndexOutOfBoundsException ex) {
@@ -35,23 +67,18 @@ class array {
 
 	//Pushes passed item to the end of the array
 	public void push(int item) {
-		//Inserting into the array
-		try {
-			int i = arr.length - 1;
+		int i = arr.length - 1;
 
-			//Check if the index is empty
-			while(arr[i] == Integer.MIN_VALUE && i >= 0) {
-				i--;
-			}
-
-			arr[i + 1] = item;
-			
-			//Display contents of the new array
-			display();
+		//Check if the index is empty
+		while(i >= 0 && arr[i] == Integer.MIN_VALUE) {
+			i--;
 		}
 
-		catch(IndexOutOfBoundsException ex) {
-			System.out.println("Array is full. Cannot push new value.");
+		arr[i + 1] = item;
+		
+		//Doubles the capacity if the size = capacity
+		if(arr[arr.length - 1] != Integer.MIN_VALUE) {
+			resize(arr.length * 2);
 		}
 	}
 
@@ -59,7 +86,7 @@ class array {
 	//to the right
 	public void insert(int index, int item) {
 		try {
-			if(arr[arr.length - 1] != Integer.MIN_VALUE) {
+			if(index > arr.length || index < 0) {
 				throw new IndexOutOfBoundsException();
 			}
 
@@ -70,14 +97,16 @@ class array {
 			
 			//Inserting the item at index
 			arr[index] = item;
+			
+			//Doubles the capacity if the size = capacity
+			if(arr[arr.length - 1] != Integer.MIN_VALUE) {
+				resize(arr.length * 2);
+			}
 		}
 
 		catch(IndexOutOfBoundsException ex) {
 			System.out.println("The index is outside the range of the array");
 		}
-
-		//Display contents of the new Array
-		display();
 	}
 	
 	//Prepend array with item
@@ -87,7 +116,7 @@ class array {
 	}
 
 	//Remove the last element and display it
-	public void pop(int[] arr) {
+	public void pop() {
 		try {
 			int i = 0;
 		
@@ -96,8 +125,15 @@ class array {
 				i++;
 			}
 
-			System.out.println("Popped value from the Array: " + arr[i]);
+			System.out.println("Popped value from the Array: " + arr[i - 1]);
+			
+			//Deletes the popped value
 			arr[i - 1] = Integer.MIN_VALUE;
+
+			//Reduces capacity if size is 1/4th the capacity
+			if(size() == (arr.length / 4)) {
+				resize(arr.length / 2);
+			}
 		}
 
 		catch(IndexOutOfBoundsException ex) {
@@ -110,53 +146,96 @@ class array {
 		try {
 			int i = index;
 
-			if(i < 0 || i >= arr.length)
-				throws new IndexOutOfBoundsException();
+			int sizeOfArray = size();
+
+			//Checks if the array is empty
+			if(sizeOfArray == 0) {
+				System.out.println("Array is empty");
+				return;
+			}
+
+			//Checks if element at index is empty or not
+			if(arr[i] == Integer.MIN_VALUE) {
+				System.out.println("Element at " + index + " is empty");
+				return;
+			}
 
 			//Removing element at index by shifting all
 			//elements from index's right to the left
 			//only if its non-empty
-			while(i < arr.length - 1 && arr[i + 1] != Integer.MIN_VALUE) {
+			while(i < (sizeOfArray - 1)) {
 				arr[i] = arr[i + 1];
 				i++;
 			}
 
 			arr[i] = Integer.MIN_VALUE;
+			
+			//Reduces the capacity if the size if 1/4th the capacity
+			if(size() == (arr.length / 4)) {
+				resize(arr.length / 2);
+			}
 		}
 
 		catch(IndexOutOfBoundsException ex) {
 			System.out.println("The index given is outside the range of the array");
 		}
 
-		display();
 	}
 
+	//Looks for value and removes index holding it (even if in multiple places)
 	public void remove(int item) {
-		//Finds the 1st occurance in the Array and prints the index
-		for(int i = 0; i < arr.length; i++) {
-			if(arr[i] == item) {
-				delete(i);
-			}
-		}
-	}
-
-	//Looks for a value and returns first index at that value
-	public void find(int item){
 		boolean flag = false;
 
-		//Finds the 1st occurance in the Array and prints the index
-		for(int i = 0; i < arr.length; i++) {
+		for(int i = 0; i < size();) {
 			if(arr[i] == item) {
 				flag = true;
-				System.out.println(item + " is at " + i);
-				break;
+				
+				System.out.println(item + " was found at " + i);
+
+				//Pass the index to delete function
+				delete(i);
+			}
+			
+			else {
+				//Since delete function removes the item and
+				//shifts the following digits to its left, 
+				//so by updating only when the value hasn't 
+				//been found prevents skipping our check for
+				//item against the newly shifted value
+				i++;
 			}
 		}
 
 		if(flag == false) {
 			System.out.println(item + " wasn't found");
 		}
+	}
 
+	//Looks for a value and returns first index at that value
+	public void find(int item){
+		//Finds the 1st occurance in the Array and prints the index
+		for(int i = 0; i < size(); i++) {
+			if(arr[i] == item) {
+				System.out.println(item + " is at " + i);
+				return;
+			}
+		}
+
+		System.out.println(item + " wasn't found");
+	}
+
+	private void resize(int new_capacity) {
+		//Made a array with new_capacity size
+		int[] copy = new int[new_capacity];
+
+		//Fill the array with Integer.MIN_VALUE 
+		Arrays.fill(copy, Integer.MIN_VALUE);
+
+		//Copies the elements from arr to the new array
+		System.arraycopy(arr, 0, copy, 0, size());
+
+		//Now make arr point to the new array
+		arr = copy;
 	}
 
 	//Displays the elements of the Array
@@ -169,21 +248,14 @@ class array {
 	}
 
 	public static void main(String[] args) {
-		
-		
-		//Example of polymorphism as there are two functions with the
-		//same name but with different input parameters
-		//size(arrayList);
-
-		//is_empty(arrayList);
-		
-		//at(10, arrayList);
-
-		//push(2, arr, arrayList);	
-
-		//insert(0, 3, arr, arrayList);
-		
+			
 		array a = new array();
+
+		int size = a.capacity();
+
+		for(int i = 0; i < 9; i++) {
+			a.push(i);
+		}
 
 		a.display();
 	}
