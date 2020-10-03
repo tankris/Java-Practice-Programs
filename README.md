@@ -10,7 +10,7 @@ The following are the programs with source code included:
 
 /dataStructures
 - array : Implementation of a Static Array (https://github.com/jwasham/coding-interview-university#arrays)
-- arrayList : Implementation of a Dynamic Array
+- arrayList : Implementation of a Dynamic Array (https://github.com/jwasham/coding-interview-university#arrays)
 - singlyLinkedList : Implementation of a Singly Linked List data structure
 
 /hackerRank
