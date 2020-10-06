@@ -11,7 +11,7 @@ The following are the programs with source code included:
 /dataStructures
 - array : Implementation of a Static Array (https://github.com/jwasham/coding-interview-university#arrays)
 - arrayList : Implementation of a Dynamic Array (https://github.com/jwasham/coding-interview-university#arrays)
-- singlyLinkedList : Implementation of a Singly Linked List data structure
+- singlyLinkedList : Implementation of a Singly Linked List data structure (https://github.com/jwasham/coding-interview-university#linked-lists)
 
 /hackerRank
 - hrprog1 : Print 2 statements using S.o.pln()
