@@ -208,7 +208,45 @@ class singlyLinkedList {
 		n.next = current.next;
 		current.next = n;
 	}
-	
+
+	//Removes node at a given index
+	public void erase(int index) {
+
+		//Checks if the Linked List is empty
+		if(empty() == true) {
+			System.out.println("Linked List is empty");
+			return;
+		}
+
+		//Confirms if the index is out of bounds or not
+		if(index < 0 || index > (size() - 1)) {
+			System.out.println("Index is out of bounds");
+		}
+		
+		//Calls pop_front() if the 1st node needs to be
+		//removed
+		if(index == 0) {
+			pop_front();
+		}
+
+		//Prev holds the 1st node initially 
+		//Forwards holds the 2nd node initially
+		node prev = head;
+		node forward = head.next;
+
+		//Checks if forward has reached the index position
+		while(index > 1) {
+			prev = prev.next;
+			forward = forward.next;
+			index--;
+		}
+
+		//Now node at prev point to the node ahead of it
+		//thereby effectively deleting the node at index
+		//i.e at forward
+		prev.next = forward.next;
+	}
+
 	public static void main(String[] args) {
 		singlyLinkedList sll = new singlyLinkedList();
 	}
