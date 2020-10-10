@@ -246,6 +246,33 @@ class singlyLinkedList {
 		//i.e at forward
 		prev.next = forward.next;
 	}
+	
+	//Returns the value of the node at nth position from the 
+	//end of the Linked List
+	public int value_n_from_end(int n) {
+		int size = size();
+
+		//Checks if the Linked List is empty
+		if(empty() == true) {
+			System.out.println("The Linked List is empty");
+			return Integer.MIN_VALUE;
+		}
+
+		//Checks if the index is out of bounds, 
+		//considering nth position starts at 1
+		if(n < 1 || n > size) {
+			System.out.println("Index is out of bounds");
+			return Integer.MIN_VALUE;
+		}
+		
+		//Size - n gives us the index of the nth element from the 
+		//end of the Linked List which we feed as the index value 
+		//to value_at()
+		int index = size - n;
+		int data = value_at(index);
+
+		return data;
+	}
 
 	public static void main(String[] args) {
 		singlyLinkedList sll = new singlyLinkedList();
