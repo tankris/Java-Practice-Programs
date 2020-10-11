@@ -274,6 +274,44 @@ class singlyLinkedList {
 		return data;
 	}
 
+	//Reverse the order of the nodes in the Linked List
+	public void reverse() {
+
+		//Checks if the Linked List is empty		
+		if(empty() == true) {
+			System.out.println("Linked List is empty");
+			return;
+		}
+
+		//Prev initially holds the value that the
+		//last node needs to point to
+		//Front is used to move to the positon that 
+		//the head points to
+		node prev = null;
+		node front = head;
+
+		//Front tracks if there is a node ahead
+		//If it does, it will move to this node
+		//Then the node head is at will be made to
+		//point to prev
+		//Then head moves to head's current location
+		//After which head moves to the front location
+		//This goes on until head reaches the last node
+		//(which now will be the 1st node) of the Linked
+		//List
+		while(front.next != null) {
+			front = front.next;
+			head.next = prev;
+			prev = head;
+			head = front;
+		}
+
+		//Once head reaches the last node, now 1st node,
+		//it is made to point to prev node thereby
+		//linking all the nodes and finishing the reversal
+		head.next = prev;
+	}
+
 	public static void main(String[] args) {
 		singlyLinkedList sll = new singlyLinkedList();
 	}
