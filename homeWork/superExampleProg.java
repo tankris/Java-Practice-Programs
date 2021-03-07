@@ -1,5 +1,5 @@
-class parent {
-	parent() {
+class Parent {
+	Parent() {
 		System.out.println("This is the parent");
 	}
 
@@ -8,8 +8,8 @@ class parent {
 	}
 }
 
-class child extends parent {
-	child() {
+class Child extends Parent {
+	Child() {
 		super();
 		System.out.println("This is the child");
 	}
@@ -19,7 +19,7 @@ class child extends parent {
 	}
 
 	public static void main(String[] args) {
-		parent obj = new child();
+		Parent obj = new Child();
 
 		obj.parentMethod();
 	}
