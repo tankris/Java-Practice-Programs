@@ -1,4 +1,4 @@
-class shapeOverloading {
+class ShapeOverloading {
 	public static void area(int side) {
 		System.out.println("Area of a square is " + (side * side));
 	}
@@ -12,8 +12,6 @@ class shapeOverloading {
 	}
 
 	public static void main(String[] args) {
-		//shapeOverloading obj = new shapeOverloading();
-
 		area(10);
 		area(10.0f);
 		area(10,10);
