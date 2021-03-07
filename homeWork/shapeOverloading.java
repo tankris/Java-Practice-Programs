@@ -12,10 +12,10 @@ class shapeOverloading {
 	}
 
 	public static void main(String[] args) {
-		shapeOverloading obj = new shapeOverloading();
+		//shapeOverloading obj = new shapeOverloading();
 
-		obj.area(10);
-		obj.area(10.0f);
-		obj.area(10,10);
+		area(10);
+		area(10.0f);
+		area(10,10);
 	}
 }
